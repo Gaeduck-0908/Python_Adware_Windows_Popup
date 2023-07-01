@@ -7,7 +7,7 @@ root.title("Title")
 
 root.overrideredirect(True)
 
-file_path = Path("IMG_20230117_125754_610.jpg")
+file_path = Path("이미지경로")
 image = Image.open(file_path)
 photo = ImageTk.PhotoImage(image)
 
@@ -29,7 +29,7 @@ def on_closing():
 
 
 def close_program(event):
-    if event.keycode == 49:
+    if event.keycode == 49: # 1번 누를시 종료
         print('종료됨')
         root.destroy()
 
