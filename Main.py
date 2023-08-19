@@ -1,14 +1,17 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from pathlib import Path
+import requests
+from io import BytesIO
 
 root = tk.Tk()
-root.title("Title")
+root.title("이미지 보기")
 
 root.overrideredirect(True)
 
-file_path = Path("이미지경로")
-image = Image.open(file_path)
+url = 'https://raw.githubusercontent.com/Gaeduck-0908/Python_Adware_Windows_Popup/master/So_Secret_Boy.jpg'
+response = requests.get(url)
+image = Image.open(BytesIO(response.content))
 photo = ImageTk.PhotoImage(image)
 
 label = tk.Label(root, image=photo)
@@ -27,13 +30,12 @@ root.geometry(f'+{x}+{y}')
 def on_closing():
     return None
 
-
 def close_program(event):
-    if event.keycode == 49: # 1번 누를시 종료
+    if event.keycode == 49: #1
         print('종료됨')
         root.destroy()
 
-root.bind("<Key>", close_program)
+root.bind("<Key>", close_program) 
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
